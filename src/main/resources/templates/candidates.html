@@ -38,16 +38,16 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Имя</h>
-		<th scope="col">Описание вакансии</h>
+		<th scope="col">Описание</h>
 		<th scope="col">Дата добавления</h>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="post: ${posts}">
-                <td th:text="${post.id}" />
-                <td th:text="${post.name}" />
-		<td th:text="${post.description}" />
-		<td th:text="${post.created}" />
+            <tr th:each="candidate: ${candidates}">
+                <td th:text="${candidate.id}" />
+                <td th:text="${candidate.name}" />
+		<td th:text="${candidate.description}" />
+		<td th:text="${candidate.created}" />
             </tr>
             </tbody>
         </table>
