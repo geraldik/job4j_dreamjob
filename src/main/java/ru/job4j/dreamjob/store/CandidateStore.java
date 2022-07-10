@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CandidateStore {
 
@@ -13,14 +14,16 @@ public class CandidateStore {
 
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
+    private final AtomicInteger idCount = new AtomicInteger();
+
     private CandidateStore() {
-        candidates.put(1, new Candidate(1, "Фролово Андрей Николаевич",
+        candidates.put(idCount.incrementAndGet(), new Candidate(idCount.get(), "Фролово Андрей Николаевич",
                 "Ищу вакансию на должность младшего Java разработчика",
                 LocalDate.of(2022, 6, 20)));
-        candidates.put(2, new Candidate(2, "Middle Java Job",
+        candidates.put(idCount.incrementAndGet(), new Candidate(idCount.get(), "Middle Java Job",
                 "Ищу вакансию на должность ведущего Java разработчика",
                 LocalDate.of(2022, 6, 20)));
-        candidates.put(3, new Candidate(3, "Senior Java Job",
+        candidates.put(idCount.incrementAndGet(), new Candidate(idCount.get(), "Senior Java Job",
                 "Ищу вакансию на должность старшего Java разработчика",
                 LocalDate.of(2022, 6, 20)));
     }
@@ -31,5 +34,18 @@ public class CandidateStore {
 
     public Collection<Candidate> findAll() {
         return candidates.values();
+    }
+
+    public void add(Candidate candidate) {
+        candidate.setId(idCount.incrementAndGet());
+        candidates.put(candidate.getId(), candidate);
+    }
+
+    public Candidate findById(int id) {
+        return candidates.get(id);
+    }
+
+    public void update(Candidate candidate) {
+        candidates.put(candidate.getId(), candidate);
     }
 }
