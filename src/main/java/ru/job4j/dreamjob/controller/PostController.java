@@ -25,6 +25,7 @@ public class PostController {
     public String addPost(Model model) {
         return "addPost";
     }
+
     @PostMapping("/createPost")
     public String createPost(@ModelAttribute Post post) {
         store.add(post);
