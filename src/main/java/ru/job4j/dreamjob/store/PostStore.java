@@ -38,6 +38,7 @@ public class PostStore {
 
     public void add(Post post) {
         post.setId(idCount.incrementAndGet());
+        post.setCreated(LocalDate.now());
         posts.put(post.getId(), post);
     }
 

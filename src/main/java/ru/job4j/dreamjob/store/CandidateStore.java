@@ -38,6 +38,7 @@ public class CandidateStore {
 
     public void add(Candidate candidate) {
         candidate.setId(idCount.incrementAndGet());
+        candidate.setCreated(LocalDate.now());
         candidates.put(candidate.getId(), candidate);
     }
 

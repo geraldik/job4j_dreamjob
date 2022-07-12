@@ -49,12 +49,6 @@
             </tr>
             </thead>
             <tbody>
-            <!--            <tr th:each="candidate: ${candidates}">-->
-            <!--                <td th:text="${candidate.id}"/>-->
-            <!--                <td th:text="${candidate.name}"/>-->
-            <!--                <td th:text="${candidate.description}"/>-->
-            <!--                <td th:text="${candidate.created}"/>-->
-            <!--            </tr>-->
             <tr th:each="candidate: ${candidates}">
                 <td th:text="${candidate.id}"></td>
                 <td>
@@ -63,7 +57,12 @@
                     </a>
                     <span th:text="${candidate.name}"></span>
                 </td>
-            </tr>
+                <td>
+                    <span th:text="${candidate.description}"></span>
+                </td>
+                <td>
+                    <span th:text="${candidate.created}"></span>
+                </td>            </tr>
             </tbody>
         </table>
     </div>
