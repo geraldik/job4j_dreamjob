@@ -13,6 +13,8 @@ public class Candidate {
 
     private LocalDate created;
 
+    private byte[] photo;
+
     public Candidate(int id, String name, String description, LocalDate created) {
         this.id = id;
         this.name = name;
@@ -53,6 +55,14 @@ public class Candidate {
 
     public void setCreated(LocalDate created) {
         this.created = created;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override

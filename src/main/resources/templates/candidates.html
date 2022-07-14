@@ -43,6 +43,7 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Фото</th>
                 <th scope="col">Имя</h>
                 <th scope="col">Описание</h>
                 <th scope="col">Дата добавления</h>
@@ -51,6 +52,9 @@
             <tbody>
             <tr th:each="candidate: ${candidates}">
                 <td th:text="${candidate.id}"></td>
+                <td>
+                    <img th:width="50" th:high="50" th:src="@{|/photoCandidate/${candidate.id}|}">
+                </td>
                 <td>
                     <a th:href="@{|/formUpdateCandidate/${candidate.id}|}">
                         <i class="fa fa-edit"></i>
@@ -62,7 +66,8 @@
                 </td>
                 <td>
                     <span th:text="${candidate.created}"></span>
-                </td>            </tr>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
