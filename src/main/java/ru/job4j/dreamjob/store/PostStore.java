@@ -19,14 +19,11 @@ public class PostStore {
 
     private PostStore() {
         posts.put(idCount.incrementAndGet(), new Post(idCount.get(), "Junior Java Job",
-                "В ГК «Программный Продукт» открыта вакансия младшего Java разработчика.",
-                LocalDate.of(2022, 6, 20)));
+                "В ГК «Программный Продукт» открыта вакансия младшего Java разработчика."));
         posts.put(idCount.incrementAndGet(), new Post(idCount.get(), "Middle Java Job",
-                "В ГК «Программный Продукт» открыта вакансия ведущего Java разработчика.",
-                LocalDate.of(2022, 6, 20)));
+                "В ГК «Программный Продукт» открыта вакансия ведущего Java разработчика."));
         posts.put(idCount.incrementAndGet(), new Post(idCount.get(), "Senior Java Job",
-                "В ГК «Программный Продукт» открыта вакансия старшего Java разработчика.",
-                LocalDate.of(2022, 6, 20)));
+                "В ГК «Программный Продукт» открыта вакансия старшего Java разработчика."));
     }
 
     public Collection<Post> findAll() {
@@ -35,7 +32,6 @@ public class PostStore {
 
     public void add(Post post) {
         post.setId(idCount.incrementAndGet());
-        post.setCreated(LocalDate.now());
         posts.put(post.getId(), post);
     }
 

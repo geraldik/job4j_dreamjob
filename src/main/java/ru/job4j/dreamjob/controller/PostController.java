@@ -29,11 +29,6 @@ public class PostController {
         return "posts";
     }
 
-//    @GetMapping("/formAddPost")
-//    public String addPost(Model model) {
-//        return "addPost";
-//    }
-
     @PostMapping("/createPost")
     public String createPost(@ModelAttribute Post post) {
         postService.add(post);

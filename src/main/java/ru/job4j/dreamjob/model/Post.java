@@ -12,21 +12,35 @@ public class Post  implements Serializable {
 
     private String description;
 
-    private LocalDate created;
+    private final LocalDate created = LocalDate.now();
 
     private boolean visible;
 
     private City city;
 
 
-
-    public Post() { }
-
-    public Post(int id, String name, String description, LocalDate created) {
+    public Post(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.created = created;
+    }
+
+    public Post() { }
+
+    public Post(int id, String name, String description, boolean visible, City city) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.visible = visible;
+        this.city = city;
+    }
+
+    public Post(int id, String name, String description, LocalDate created, boolean visible, City city) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.visible = visible;
+        this.city = city;
     }
 
 
@@ -73,10 +87,6 @@ public class Post  implements Serializable {
 
     public LocalDate getCreated() {
         return created;
-    }
-
-    public void setCreated(LocalDate created) {
-        this.created = created;
     }
 
     public boolean isVisible() {
