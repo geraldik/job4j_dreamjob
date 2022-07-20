@@ -19,14 +19,11 @@ public class CandidateStore {
 
     private CandidateStore() {
         candidates.put(idCount.incrementAndGet(), new Candidate(idCount.get(), "Фролово Андрей Николаевич",
-                "Ищу вакансию на должность младшего Java разработчика",
-                LocalDate.of(2022, 6, 20)));
+                "Ищу вакансию на должность младшего Java разработчика"));
         candidates.put(idCount.incrementAndGet(), new Candidate(idCount.get(), "Middle Java Job",
-                "Ищу вакансию на должность ведущего Java разработчика",
-                LocalDate.of(2022, 6, 20)));
+                "Ищу вакансию на должность ведущего Java разработчика"));
         candidates.put(idCount.incrementAndGet(), new Candidate(idCount.get(), "Senior Java Job",
-                "Ищу вакансию на должность старшего Java разработчика",
-                LocalDate.of(2022, 6, 20)));
+                "Ищу вакансию на должность старшего Java разработчика"));
     }
 
     public Collection<Candidate> findAll() {

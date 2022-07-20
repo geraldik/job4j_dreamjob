@@ -11,18 +11,26 @@ public class Candidate {
 
     private String description;
 
-    private LocalDate created;
+    private LocalDate created = LocalDate.now();
 
     private byte[] photo;
 
-    public Candidate(int id, String name, String description, LocalDate created) {
+    public Candidate(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.created = LocalDate.now();
+    }
+
+    public Candidate() {
+    }
+
+    public Candidate(int id, String name, String description, LocalDate created, byte[] photo) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.created = created;
-    }
-
-    public Candidate() {
+        this.photo = photo;
     }
 
     public int getId() {

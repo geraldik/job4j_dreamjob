@@ -12,7 +12,7 @@ public class Post  implements Serializable {
 
     private String description;
 
-    private final LocalDate created = LocalDate.now();
+    private LocalDate created = LocalDate.now();
 
     private boolean visible;
 
@@ -39,6 +39,7 @@ public class Post  implements Serializable {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.created = created;
         this.visible = visible;
         this.city = city;
     }
