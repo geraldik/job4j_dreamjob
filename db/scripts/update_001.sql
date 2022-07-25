@@ -23,3 +23,4 @@ CREATE TABLE IF NOT EXISTS users
     email    VARCHAR(50) UNIQUE,
     password TEXT
 );
+select * from users;

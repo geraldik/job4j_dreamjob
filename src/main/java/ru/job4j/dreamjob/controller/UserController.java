@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.UserService;
 
@@ -30,9 +31,20 @@ public class UserController {
         return "redirect:/success";
     }
 
-    @GetMapping("/registrationForm")
-    public String formRegistration(Model model) {
-        model.addAttribute("user", model);
-        return "registrationForm";
+    @GetMapping("/formRegistration")
+    public String formRegistration(Model model, @RequestParam(name = "fail", required = false) Boolean fail) {
+        model.addAttribute("fail", fail != null);
+        return "registration";
     }
+
+    @GetMapping("/success")
+    public String success() {
+        return "success";
+    }
+
+    @GetMapping("/fail")
+    public String fail() {
+        return "fail";
+    }
+
 }
