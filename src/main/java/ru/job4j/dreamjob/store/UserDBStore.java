@@ -5,13 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.User;
-import ru.job4j.dreamjob.service.CityService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.time.LocalTime;
 
 
 @Repository
@@ -33,7 +30,7 @@ public class UserDBStore {
         ) {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
-            ps.setString(4, user.getPassword());
+            ps.setString(3, user.getPassword());
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
@@ -54,7 +51,7 @@ public class UserDBStore {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
-            ps.setInt(5, user.getId());
+            ps.setInt(4, user.getId());
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
