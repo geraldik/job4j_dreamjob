@@ -39,6 +39,7 @@ public class UserDBStore {
             }
         } catch (Exception e) {
             LOG.warn("Can't add user", e);
+            user = null;
         }
         return user;
     }

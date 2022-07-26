@@ -15,6 +15,9 @@ import java.util.Optional;
 @Controller
 public class UserController {
 
+    private static final String FAIL_MESSAGE = "Пользователь с такой почтой уже существует";
+    private static final String SUCCESS_MESSAGE = "Пользователь зарегестрирован успешно";
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -22,28 +25,28 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(Model model, @ModelAttribute User user) {
+    public String registration(@ModelAttribute User user) {
         Optional<User> regUser = userService.add(user);
         if (regUser.isEmpty()) {
-            model.addAttribute("message", "Пользователь с такой почтой уже существует");
             return "redirect:/fail";
         }
         return "redirect:/success";
     }
 
     @GetMapping("/formRegistration")
-    public String formRegistration(Model model, @RequestParam(name = "fail", required = false) Boolean fail) {
-        model.addAttribute("fail", fail != null);
+    public String formRegistration() {
         return "registration";
     }
 
     @GetMapping("/success")
-    public String success() {
+    public String success(Model model) {
+        model.addAttribute("message", SUCCESS_MESSAGE);
         return "success";
     }
 
     @GetMapping("/fail")
-    public String fail() {
+    public String fail(Model model) {
+        model.addAttribute("message", FAIL_MESSAGE);
         return "fail";
     }
 
