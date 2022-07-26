@@ -7,7 +7,7 @@ create TABLE IF NOT EXISTS post
     visible     BOOL,
     city_id     INT
 );
-create TABLE IF NOT EXISTS candidate
+CREATE TABLE IF NOT EXISTS candidate
 (
     id          SERIAL PRIMARY KEY,
     name        TEXT,
@@ -23,4 +23,3 @@ CREATE TABLE IF NOT EXISTS users
     email    VARCHAR(50) UNIQUE,
     password TEXT
 );
-select * from users;
