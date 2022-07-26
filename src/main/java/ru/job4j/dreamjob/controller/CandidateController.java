@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.service.CandidateService;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -24,13 +25,15 @@ public class CandidateController {
     }
 
     @GetMapping("/candidates")
-    public String candidates(Model model) {
+    public String candidates(Model model, HttpSession session) {
         model.addAttribute("candidates", service.findAll());
+        SessionControl.getUserSession(model, session);
         return "candidates";
     }
 
     @GetMapping("/formAddCandidate")
-    public String addCandidate(Model model) {
+    public String addCandidate(Model model, HttpSession session) {
+        SessionControl.getUserSession(model, session);
         return "addCandidate";
     }
 
@@ -43,14 +46,16 @@ public class CandidateController {
     }
 
     @GetMapping("/formUpdateCandidate/{candidateId}")
-    public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id) {
+    public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id, HttpSession session) {
         model.addAttribute("candidate", service.findById(id));
+        SessionControl.getUserSession(model, session);
         return "updateCandidate";
     }
 
     @PostMapping("/updateCandidate")
     public String updatePost(@ModelAttribute Candidate candidate,
-                             @RequestParam("file") MultipartFile file) throws IOException {
+                             @RequestParam("file") MultipartFile file,
+                             HttpSession session) throws IOException {
         candidate.setPhoto(file.getBytes());
         service.update(candidate);
         return "redirect:/candidates";
