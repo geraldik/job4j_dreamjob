@@ -20,11 +20,7 @@ public class UserService {
         return Optional.ofNullable(store.add(user));
     }
 
-    public User findById(int id) {
-        return store.findById(id);
-    }
-
-    public void update(User user) {
-        store.update(user);
+    public Optional<User> findUserByEmailAndPwd(String email, String password) {
+        return Optional.ofNullable(store.findUserByEmailAndPwd(email, password));
     }
 }
