@@ -9,6 +9,7 @@ import ru.job4j.dreamjob.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 
 @Repository
@@ -64,25 +65,25 @@ public class UserDBStore {
         }
     }
 
-    public User findById(int id) {
+    public Optional<User> findById(int id) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE id = ?")
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    return new User(it.getInt("id"), it.getString("name"),
+                    return Optional.of(new User(it.getInt("id"), it.getString("name"),
                             it.getString("email"),
-                            it.getString("password"));
+                            it.getString("password")));
                 }
             }
         } catch (Exception e) {
             LOG.warn("Can't find user by id", e);
         }
-        return null;
+        return Optional.empty();
     }
 
-    public User findUserByEmailAndPwd(String email, String password) {
+    public Optional<User> findUserByEmailAndPwd(String email, String password) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?")
         ) {
@@ -90,14 +91,14 @@ public class UserDBStore {
             ps.setString(2, password);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    return new User(it.getInt("id"), it.getString("name"),
+                    return Optional.of(new User(it.getInt("id"), it.getString("name"),
                             it.getString("email"),
-                            it.getString("password"));
+                            it.getString("password")));
                 }
             }
         } catch (Exception e) {
             LOG.warn("Can't find user by id", e);
         }
-        return null;
+        return Optional.empty();
     }
 }
