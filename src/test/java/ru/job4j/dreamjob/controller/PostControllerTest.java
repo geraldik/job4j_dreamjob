@@ -70,7 +70,7 @@ public class PostControllerTest {
 
     @Test
     public void whenGetFormUpdatePost() {
-       Post input = new Post(1, "New post", "description");
+        Post input = new Post(1, "New post", "description");
         List<Post> posts = List.of(input);
         Model model = mock(Model.class);
         PostService postService = mock(PostService.class);
@@ -94,7 +94,7 @@ public class PostControllerTest {
                 postService,
                 cityService
         );
-        String page =postController.formAddPost(mock(Model.class), mock(HttpSession.class));
+        String page = postController.formAddPost(mock(Model.class), mock(HttpSession.class));
         assertEquals(page, "addPost");
     }
 }
