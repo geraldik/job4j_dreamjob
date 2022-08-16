@@ -23,7 +23,7 @@ public class UserDBStore {
     }
 
 
-    public User add(User user) {
+    public Optional<User> add(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "INSERT INTO users(name, email, password) VALUES (?, ?, ?)",
@@ -36,13 +36,13 @@ public class UserDBStore {
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
                     user.setId(id.getInt(1));
+                    return Optional.of(user);
                 }
             }
         } catch (Exception e) {
             LOG.warn("Can't add user", e);
-            user = null;
         }
-        return user;
+        return Optional.empty();
     }
 
     public void update(User user) {
